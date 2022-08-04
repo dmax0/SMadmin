@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import request from "./services/request";
+import "./App.css";
+import { LoginPage } from "./pages/login/login";
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "./pages/home/HomePage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    // useEffect(() => {
+    //     request.get('/get', {
+    //         params: {
+    //             name: 'dragonmax'
+    //         }
+    //     }).then(console.log)
+
+    // }, []);
+    return <Routes>
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/" element={<HomePage />} />
+    </Routes>;
 }
-
-export default App;
