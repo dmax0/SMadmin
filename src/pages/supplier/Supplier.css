@@ -1,0 +1,14 @@
+.head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 40px;
+    background-color: #fff;
+}
+.head .buttons {
+    display: flex;
+    gap: 10px;
+}
+.body {
+    margin-top: 20px;
+}

@@ -1,8 +1,11 @@
 .logo {
     color: rgb(251, 0, 0);
-    background: #000;
-    float: left;
-    width: 100px;
+    background: rgba(255, 255, 255,0.5);
+    font-size: 1.5em;
+    font-weight: bold;
+    min-height: calc(1.5em * 1.5);
+    width: calc(100% - 2px);
+    padding: 0.5em;
+    margin-top: 0.5em;
     text-align: center;
-    margin-right: 30px;
 }

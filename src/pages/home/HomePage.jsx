@@ -108,7 +108,6 @@ export const HomePage = () => {
     },
   ];
   return (
-    <MainLayout>
       <Layout>
         <Space
           style={{
@@ -121,6 +120,5 @@ export const HomePage = () => {
         </Space>
         <Table columns={columns} dataSource={data} onChange={handleChange} />
       </Layout>
-    </MainLayout>
   );
 };
