@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "baseUrl": "./",
+    "paths": {
+      
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@assets/*": ["src/assets/*"],
+      "@context/*": ["src/context/*"],
+      "@/*": ["src/*"]
+    },
+    "module": "commonjs",
+    "target": "ES2015",
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -7,21 +7,9 @@ export const siderMenuItems = [
         icon: <DashboardOutlined />,
     },
      {
-        label: "用户管理",
-        key: "/admin/user/#",
-        icon: <UserOutlined />,
-        children:[
-            {
-                label: "用户列表",
-                key: "/admin/user/list",
-            }, {
-                label: "添加用户",
-                key: "/admin/user/add",
-            }, {
-                label: "修改用户",
-                key: "/admin/user/edit",
-            }
-        ]
+        label: <Link to={'/admin/user'}>用户管理</Link>,
+        key: "/admin/user",
+        icon: <UserOutlined />
     }, {
         label: "权限管理",
         key: "/admin/authority",

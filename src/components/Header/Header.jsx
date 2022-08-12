@@ -1,38 +1,22 @@
-import React, { useMemo, useState } from "react";
-import {
-  Menu,
-  Row,
-  Col,
-  Breadcrumb,
-  Layout,
-  Badge,
-  Avatar,
-  Button,
-  Input,
-  Form,
-} from "antd";
-import "./Header.css";
-import PropTypes from "prop-types";
-import Search from "antd/lib/input/Search";
 import {
   HomeOutlined,
   MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  MessageOutlined,
-  QuestionCircleOutlined,
+  MenuUnfoldOutlined, QuestionCircleOutlined,
   SearchOutlined,
-  SubnodeOutlined,
-  UserOutlined,
+  SubnodeOutlined
 } from "@ant-design/icons";
+import { useUser } from "@context/auth/user-context";
+import {
+  Breadcrumb, Input
+} from "antd";
 import { Header } from "antd/lib/layout/layout";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { MyProfile } from "../MyProfile/MyProfile";
+import "./Header.css";
 
 export const AppHeader = (props) => {
   const {
-    theme,
-    mode,
-    items,
-    style,
     collasped,
     changeCollasped,
     setMarginLeft,
@@ -41,6 +25,7 @@ export const AppHeader = (props) => {
   const [headerCollapsed, setHeaderCollapsed] = useState(collasped);
   const [isMobile, setIsMobile] = useState(false);
 
+  const user = useUser();
   window.addEventListener("resize", () => {
     if (window.innerWidth < 668) {
       setIsMobile(true);
@@ -54,12 +39,14 @@ export const AppHeader = (props) => {
         display: "flex",
         justifyContent: "space-between",
         padding: 0,
-        background: "#eeeeee"
+        background: "#eeeeee",
       }}
     >
-      <div style={{
-        display: "flex",
-      }}>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
         {React.createElement(
           headerCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
@@ -71,9 +58,11 @@ export const AppHeader = (props) => {
             },
           }
         )}
-        <Breadcrumb style={{
-          marginTop: 20
-        }}>
+        <Breadcrumb
+          style={{
+            marginTop: 20,
+          }}
+        >
           <Breadcrumb.Item href={"/"}>
             <HomeOutlined />
           </Breadcrumb.Item>
@@ -83,12 +72,14 @@ export const AppHeader = (props) => {
         </Breadcrumb>
       </div>
 
-      <div style={{
-            lineHeight: 3,
-            display: "flex",
-            marginRight: 30
-          }}>
-      <Input.Search
+      <div
+        style={{
+          lineHeight: 3,
+          display: "flex",
+          marginRight: 30,
+        }}
+      >
+        <Input.Search
           allowClear
           placeholder="搜索"
           enterButton={<SearchOutlined />}
@@ -104,20 +95,28 @@ export const AppHeader = (props) => {
                 }
           }
         />
-        <a href="/admin/suplier" style={{
-          marginTop: 12,
-          marginLeft: 14,
-        }}><QuestionCircleOutlined style={{
-          fontSize: 18
-        }}/></a>
+        <a
+          href="/admin/suplier"
+          style={{
+            marginTop: 12,
+            marginLeft: 14,
+          }}
+        >
+          <QuestionCircleOutlined
+            style={{
+              fontSize: 18,
+            }}
+          />
+        </a>
         <MyProfile
+          imgSrc={user.avatar}
           style={{
             display: "flex",
             marginLeft: 20,
-            marginTop: 10
+            marginTop: 10,
           }}
           count={9}
-          username={"DragonMax"}
+          username={user.name}
         />
       </div>
     </Header>

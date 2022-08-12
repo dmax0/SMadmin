@@ -1,49 +1,27 @@
-import React, { useEffect } from "react";
-import request from "./services/request";
+
+import { Loading } from "@components/Loading/Loading";
+import AppProviders from "@context/AppProviders";
+import { UserProvider, useUser } from "@context/auth/user-context";
+import React, { Suspense, useContext } from "react";
+import { HashRouter } from "react-router-dom";
 import "./App.css";
-import { LoginPage } from "./pages/login/login";
-import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/home/HomePage";
-import { siderMenuItems } from "./config/siderConfig";
-import { MainLayout } from "./layouts/mainLayout/MainLayout";
-import { Supplier } from "./pages/supplier/Supplier";
+import { AppContext } from "./AuthenticatedApp";
+
+const AuthenticatedApp = React.lazy(() => import("./AuthenticatedApp").then(module => ({ default: module.AuthenticatedApp })));
+const UnauthenticatedApp = React.lazy(() => import("./UnauthenticatedApp").then(module => ({ default: module.UnauthenticatedApp })));
 
 export default function App() {
-    // useEffect(() => {
-    //     request.get('/get', {
-    //         params: {
-    //             name: 'dragonmax'
-    //         }
-    //     }).then(console.log)
-
-    // }, []);
-    const path = [];
-    siderMenuItems.forEach(item => {
-        if (item.children) {
-            item.children.forEach(child => {
-                path.push(child.key);
-            })
-        } else {
-            path.push(item.key);
-        }
-    })
+    const user = useUser();
     return (
-        <MainLayout>
-            <Routes>
-                {
-                    path.map(item => {
 
-                        return item === '/admin/supplier' ? <Route path="/admin/supplier" element={
-                            <Supplier />
-                        } key={item} /> :
-                            <Route path={item} element={
-                                <HomePage />
-                            } key={item} />
-                    })
-                }
+        <UserProvider>
+            <Suspense fallback={<Loading />}>
+                <HashRouter>
+                    {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+                </HashRouter>
 
-                <Route path="/admin/login" element={<LoginPage />} />
-            </Routes>
-        </MainLayout>
-    )
+            </Suspense >
+        </UserProvider>
+
+    );
 }

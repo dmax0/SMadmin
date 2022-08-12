@@ -4,7 +4,7 @@ import { Logo } from "../Logo/Logo";
 
 const { Sider } = Layout;
 export const AppSider = (props) => {
-  const { items, collapsed } = props;
+  const { items, collapsed, theme } = props;
   return (
     <Sider
     trigger={null}
@@ -16,12 +16,11 @@ export const AppSider = (props) => {
       left: 0,
       top: 0,
       bottom: 0,
-      background: "#fff"
+      background: "#ffffff"
     }}
     >
       <Logo />
-      <Menu items={items} mode={"inline"} theme="lignt" 
-      ></Menu>
+      <Menu items={items} mode={"inline"} theme={theme} ></Menu>
     </Sider>
   );
 };

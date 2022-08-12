@@ -4,7 +4,7 @@ import { Button, Checkbox, Form, Input } from "antd"
 import PropTypes from "prop-types"
 export const LoginForm = (props) => {
     
-    const {handleSubmit, className, size} = props;
+    const {handleSubmit, className, size , loading} = props;
     return <Form
         name="LoginForm"
         initialValues={{
@@ -41,11 +41,8 @@ export const LoginForm = (props) => {
             <Input prefix={<LockOutlined />} size={size}/>
         </Form.Item>
         
-        <Form.Item name="rememberMe" valuePropName="checked">
-            <Checkbox>记住密码</Checkbox>
-        </Form.Item>
         <Form.Item >
-            <Button block type="primary" htmlType="submit" size={size}>登录</Button>
+            <Button block type="primary" htmlType="submit" size={size} loading={loading}>登录</Button>
         </Form.Item>
     </Form>
 }

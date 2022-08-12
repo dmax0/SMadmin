@@ -2,15 +2,13 @@ import axios from "axios";
 import { Layout, Button, Space, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
 
-import "./HomePage.css";
-import { useAsync } from "../../utils/use-async";
 import {
   DeleteOutlined,
   EditOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
-export const HomePage = () => {
+export const UserPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -117,7 +115,11 @@ export const HomePage = () => {
         style={{
           marginBottom: 16,
         }}
-      ></Space>
+      >
+        <Button type="primary" >
+          新增管理员
+        </Button>
+      </Space>
       <Table columns={columns} dataSource={datas} loading={isLoading} />
     </Layout>
   );
