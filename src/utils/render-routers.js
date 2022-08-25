@@ -1,11 +1,17 @@
+import AppRoutes from "@components/AppRoutes";
 import { Route } from "react-router-dom";
 
 export const renderRouters = (routerConfig) => {
     return (routerConfig || []).map(({ path, key, element, children, ...rest }) => {
         if (rest.index) {
-            return <Route index  key={key} element={element} />;
+            return <AppRoutes
+                key={key}
+                index
+                element={element}
+                {...rest}
+            />
         }
-        return <Route path={path} key={key} element={element} children={children} />;
+        return <AppRoutes key={key} path={path} element={element} {...rest} />
     }
     );
 }

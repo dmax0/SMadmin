@@ -5,7 +5,7 @@ import {
   SearchOutlined,
   SubnodeOutlined
 } from "@ant-design/icons";
-import { useUser } from "@context/auth/user-context";
+
 import {
   Breadcrumb, Input
 } from "antd";
@@ -25,7 +25,7 @@ export const AppHeader = (props) => {
   const [headerCollapsed, setHeaderCollapsed] = useState(collasped);
   const [isMobile, setIsMobile] = useState(false);
 
-  const user = useUser();
+ 
   window.addEventListener("resize", () => {
     if (window.innerWidth < 668) {
       setIsMobile(true);
@@ -66,9 +66,9 @@ export const AppHeader = (props) => {
           <Breadcrumb.Item href={"/"}>
             <HomeOutlined />
           </Breadcrumb.Item>
-          <Breadcrumb.Item href="/admin/supplier">
-            <SubnodeOutlined /> <span>供应商管理</span>
-          </Breadcrumb.Item>
+          {
+            console.log(props.breadcrumbName)
+          }
         </Breadcrumb>
       </div>
 
@@ -109,14 +109,13 @@ export const AppHeader = (props) => {
           />
         </a>
         <MyProfile
-          imgSrc={user.avatar}
           style={{
             display: "flex",
             marginLeft: 20,
             marginTop: 10,
           }}
           count={9}
-          username={user.name}
+          username={''}
         />
       </div>
     </Header>

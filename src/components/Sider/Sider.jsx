@@ -1,10 +1,11 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Spin } from "antd";
+import { useState } from "react";
 
 import { Logo } from "../Logo/Logo";
 
 const { Sider } = Layout;
 export const AppSider = (props) => {
-  const { items, collapsed, theme } = props;
+  const { items, collapsed, theme, loading } = props;
   return (
     <Sider
     trigger={null}
@@ -20,7 +21,13 @@ export const AppSider = (props) => {
     }}
     >
       <Logo />
-      <Menu items={items} mode={"inline"} theme={theme} ></Menu>
+      {loading ? <Spin style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "80vh"
+      }}/> : <Menu items={items} mode={"inline"} theme={theme} />
+    }
     </Sider>
   );
 };

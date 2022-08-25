@@ -1,30 +1,30 @@
-import { Avatar, Image, Layout } from "antd";
+import { Layout, message } from "antd";
 
 import { LoginForm } from "@components/LoginForm/LoginForm";
 import "./login.css";
-import { useState } from "react";
-import axios from "axios";
-const { Header, Content } = Layout;
+import { useAuthDispatch, useAuthState } from "@context/context";
+import { loginUser } from "@context/actions";
+import { useNavigate } from "react-router-dom";
+const { Content } = Layout;
 
-export const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
-  const handleSubmit = (values) => {
-    const { username, password } = values;
-    setLoading(true);
-    axios
-      .post("auth/login", {
-        username,
-        password,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+export const LoginPage = (props) => {
+  const dispatch = useAuthDispatch();
+  const navigate = useNavigate();
+  const { loading, errorMessage } = useAuthState();
+  const handleSubmit = async (values) => {
+    try {
+      const response = await loginUser(dispatch, values);
+
+      if (response && response.user) {
+        message.success(response.message);
+        setTimeout(() => {
+          window.location.href = "/admin/user";
+        }, 1000);
+      } else message.error(errorMessage);
+    } catch (error) {
+      console.log(error);
+      errorMessage && message.error(errorMessage);
+    }
   };
   return (
     <div className="main">

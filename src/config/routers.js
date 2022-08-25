@@ -10,14 +10,17 @@ const routerConfig = [
         key: 'home',
         element: <HomePage />,
         index: true,
+        isPrivate: true
     }, {
         key: 'supplier',
         path: 'supplier',
         element: <Supplier />,
+        isPrivate: true
     }, {
         key: 'login',
         path: 'login',
         element: <LoginPage />,
+        isPrivate: false
     }, {
         key: 'user',
         path: 'user',
